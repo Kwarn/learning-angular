@@ -1,0 +1,11 @@
+<div
+  (click)="setOverview()"
+  class="container"
+  [class.grey]="isGrey"
+  [class.focused]="isFocused"
+>
+  <p>{{ course?.name }}</p>
+  <ul>
+    <li *ngFor="let student of course?.students">{{ student }}</li>
+  </ul>
+</div>

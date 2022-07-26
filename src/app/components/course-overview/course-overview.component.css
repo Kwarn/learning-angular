@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  border-radius: 15px;
+}
+
+.titleContainer {
+  height: 60px;
+  background-color: rgb(155, 184, 209);
+  border-radius: 15px 15px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 2px 2px #888888;
+
+}
+
+.desciptionContainer {
+  background-color: rgb(206, 217, 226);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0px 0px 15px 15px;
+  box-shadow: 2px 2px #888888;
+}
+
+p {
+  margin: 20px 10px;
+}

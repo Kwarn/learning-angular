@@ -1,0 +1,19 @@
+<div class="container">
+  <ul *ngIf="dataIdentifier === 'students'">
+    <li *ngFor="let student of students; let i = index">
+      <app-student-item
+        [student]="student"
+        [isGrey]="i % 2 === 0 ? true : false"
+      ></app-student-item>
+    </li>
+  </ul>
+  <ul *ngIf="dataIdentifier === 'courses'">
+    <li *ngFor="let course of courses; let i = index">
+      <app-course-item
+        [course]="course"
+        [isGrey]="i % 2 === 0 ? true : false"
+        [isFocused]="focusIdentifier === course.name"
+      ></app-course-item>
+    </li>
+  </ul>
+</div>

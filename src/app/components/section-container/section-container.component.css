@@ -1,0 +1,18 @@
+.container {
+  width: 400px;
+  max-height: 400px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+ul {
+  list-style: none;
+}
+
+.greyBg {
+  background-color: rgb(223, 223, 223);
+  color: black;
+}

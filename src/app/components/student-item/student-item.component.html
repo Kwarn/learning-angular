@@ -1,0 +1,6 @@
+<div class="container" [class.grey]="isGrey">
+  <p>{{ student?.name }}</p>
+  <ul>
+    <li *ngFor="let course of student?.courses">{{ course }}</li>
+  </ul>
+</div>
