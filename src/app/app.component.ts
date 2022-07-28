@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { SwitchFocusedItemService } from './events-service';
-import { Course, Student } from './interfaces';
-import { MOCK_COURSES } from './mock-courses';
-import { MOCK_STUDENTS } from './mock-students';
+import { Course, Student } from './types';
+import { CourseService } from './services/course.service';
+import { StudentService } from './services/student.service';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +15,24 @@ export class AppComponent {
   focusedCourseItem: Course | null = null;
   focusedStudentItem: Student | null = null;
   focusIdentifier: string | null = null;
+  courseData: Course[] = [];
+  studentData: Student[] = [];
 
-  studentData: Student[] = MOCK_STUDENTS;
-  courseData: Course[] = MOCK_COURSES;
+  constructor(
+    public switchFocusedItemService: SwitchFocusedItemService,
+    private courseService: CourseService,
+    private studentService: StudentService
+  ) {}
 
-  constructor(public switchFocusedItemService: SwitchFocusedItemService) {}
+  ngOnInit(): void {
+    this.courseService
+      .getCourses()
+      .subscribe((courses) => (this.courseData = courses));
 
-  ngOnInit() {
+    this.studentService
+      .getStudents()
+      .subscribe((students) => (this.studentData = students));
+
     this.switchFocusedItemService.message$.subscribe((name) => {
       if (this.activeList === 'students') {
         const foundStudent = this.studentData.filter(

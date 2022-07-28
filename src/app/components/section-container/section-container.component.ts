@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MOCK_STUDENTS } from 'src/app/mock-students';
-import { Student, Course } from 'src/app/interfaces';
+import { Student, Course } from 'src/app/types';
 
 @Component({
   selector: 'app-section-container',

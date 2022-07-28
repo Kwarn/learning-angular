@@ -28,3 +28,8 @@ p {
 .focused {
   background-color: rgb(155, 184, 209);
 }
+
+.delete-icon {
+  color: red;
+  margin: 0 10px 0 0;
+}

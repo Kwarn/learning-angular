@@ -20,3 +20,12 @@ h1 {
   justify-content: space-between;
   align-items: center;
 }
+
+.container {
+  justify-content: space-between;
+  flex-direction: column;
+  display: flex;
+  max-height: 400px;
+  margin: 20px 0px; 
+  width: 500px;
+}

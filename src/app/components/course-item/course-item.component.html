@@ -8,4 +8,5 @@
   <ul>
     <li *ngFor="let student of course?.students">{{ student }}</li>
   </ul>
+  <fa-icon (click)="onDelete()" class="delete-icon" [icon]="faTimes"></fa-icon>
 </div>

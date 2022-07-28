@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -8,6 +9,7 @@ import { SectionContainerComponent } from './components/section-container/sectio
 import { StudentItemComponent } from './components/student-item/student-item.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
 import { CourseOverviewComponent } from './components/course-overview/course-overview.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { CourseOverviewComponent } from './components/course-overview/course-ove
     CourseItemComponent,
     CourseOverviewComponent,
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, FontAwesomeModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

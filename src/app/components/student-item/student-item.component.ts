@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Student } from 'src/app/interfaces';
+import { Student } from 'src/app/types';
 
 @Component({
   selector: 'app-student-item',

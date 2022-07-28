@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Course } from 'src/app/interfaces';
+import { Course } from 'src/app/types';
 
 @Component({
   selector: 'app-course-overview',

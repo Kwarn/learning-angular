@@ -10,3 +10,11 @@ export interface Course {
   description: string;
   students: string[] | [];
 }
+
+export interface ResponseTest {
+  status: string;
+  statusCode: string;
+  message: string;
+  errors: string | string[];
+  errorMessage: string;
+}
