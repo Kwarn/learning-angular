@@ -18,3 +18,8 @@ export interface ResponseTest {
   errors: string | string[];
   errorMessage: string;
 }
+
+export interface ListTypes {
+  students?: Student[];
+  courses?: Course[];
+}

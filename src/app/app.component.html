@@ -12,12 +12,15 @@
       (btnClick)="switchActiveList('students')"
     ></app-button>
   </div>
-  <app-section-container
-    [dataIdentifier]="activeList"
-    [courses]="activeList === 'courses' ? courseData : null"
-    [students]="activeList === 'students' ? studentData : null"
-    [focusIdentifier]="focusIdentifier"
-  ></app-section-container>
+  <app-list
+    [listData]="
+      activeList === 'courses'
+        ? courseData
+        : activeList === 'students'
+        ? studentData
+        : null
+    "
+  ></app-list>
   <div class="overview-container">
     <app-course-overview
       *ngIf="activeList === 'courses' && focusedCourseItem"

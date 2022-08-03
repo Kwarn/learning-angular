@@ -5,9 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
-import { SectionContainerComponent } from './components/section-container/section-container.component';
-import { StudentItemComponent } from './components/student-item/student-item.component';
-import { CourseItemComponent } from './components/course-item/course-item.component';
+import { ListComponent } from './components/list/list.component';
+import { ListItemComponent } from './components/list-item/list-item.component';
 import { CourseOverviewComponent } from './components/course-overview/course-overview.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -16,9 +15,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppComponent,
     HeaderComponent,
     ButtonComponent,
-    SectionContainerComponent,
-    StudentItemComponent,
-    CourseItemComponent,
+    ListComponent,
+    ListItemComponent,
     CourseOverviewComponent,
   ],
   imports: [BrowserModule, FontAwesomeModule, HttpClientModule],

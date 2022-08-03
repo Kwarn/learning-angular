@@ -1,0 +1,11 @@
+<div class="container">
+  <ul>
+    <app-list-item
+      *ngFor="let data of listData; index as i"
+      [data]="data"
+      [isGrey]="i % 2 === 0 ? true : false"
+      [isFocused]="focusIdentifier === data.name"
+    >
+    </app-list-item>
+  </ul>
+</div>
