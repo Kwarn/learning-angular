@@ -5,6 +5,8 @@
       [data]="data"
       [isGrey]="i % 2 === 0 ? true : false"
       [isFocused]="focusIdentifier === data.name"
+      [dataIdentifier]="dataIdentifier"
+      (onDeleteClick)="onDelete(data.id)"
     >
     </app-list-item>
   </ul>

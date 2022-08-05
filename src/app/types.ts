@@ -23,3 +23,5 @@ export interface ListTypes {
   students?: Student[];
   courses?: Course[];
 }
+
+export type ListNames = 'courses' | 'students';
