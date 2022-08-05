@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Student, Course } from 'src/app/types';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Student, Course, ListNames } from 'src/app/types';
+import { AppState } from 'src/state/app.state';
+import { loadCourses } from 'src/state/courses/course.actions';
+import { selectAllCourses } from 'src/state/courses/course.selectors';
+import { selectActiveList } from 'src/state/shared/shared.selectors';
 
 @Component({
   selector: 'app-list',
@@ -7,43 +13,41 @@ import { Student, Course } from 'src/app/types';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
+  constructor(private store: Store<AppState>) {}
+
   @Output() setOverviewCb = new EventEmitter();
-  @Input() listData: Array<Student | Course> | null = null;
   @Input() focusIdentifier: string | null = null;
 
-  isCourse(data: any): data is Course {
-    return data.includes(data);
-  }
-  isStudent(data: any): data is Student {
-    return data.includes(data);
-  }
+  listData$: Observable<Array<Student | Course>> | undefined;
+  activeList: ListNames | undefined;
+  console = console;
 
-  dataIdentifier: 'course' | 'student' | null = this.isCourse(this.listData)
-    ? 'course'
-    : this.isStudent(this.listData)
-    ? 'student'
-    : null;
+  ngOnInit() {
+    this.store
+      .select(selectActiveList)
+      .subscribe((event) => (this.activeList = event));
 
-  constructor() {}
+    if (this.activeList === 'courses') {
+      this.store.dispatch(loadCourses());
+      this.listData$ = this.store.select(selectAllCourses);
+    }
+  }
 
   onDelete(id: string | undefined) {
     if (!id) return; // handle error
 
-    switch (this.dataIdentifier) {
-      case 'student':
+    switch (this.activeList) {
+      case 'students':
         //something
         break;
-      case 'course':
+      case 'courses':
         // const res = this.courseService.deleteCourse(this.data?.id).subscribe();
         break;
       default:
         return;
     }
   }
-
-  ngOnInit(): void {}
 }
-
 
 /* 
   ngOnInit(): void {

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SwitchFocusedItemService } from 'src/app/events-service';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Course, Student } from 'src/app/types';
 import { CourseService } from 'src/app/services/course.service';
@@ -18,13 +17,11 @@ export class ListItemComponent implements OnInit {
   faTimes = faTimes;
   console = console;
 
-  constructor(private switchFocusedItemService: SwitchFocusedItemService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
-  setOverview() {
-    this.switchFocusedItemService.setFocused(this.data?.name);
-  }
+  setOverview() {}
 
   onDelete() {
     const input = prompt(

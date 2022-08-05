@@ -11,13 +11,14 @@
       [active]="(activeList$ | async) === 'students'"
       (btnClick)="switchActiveList('students')"
     ></app-button>
-    {{ console.log(activeList$) }}
   </div>
   <app-list></app-list>
   <div class="overview-container">
     <!-- <app-course-overview
       *ngIf="(activeList$ | async) === 'courses' && focusedCourseItem"
       [course]="focusedCourseItem"
-    ></app-course-overview> -->
+      ></app-course-overview> -->
   </div>
 </div>
+
+{{ console.log(activeList$ | async) }}

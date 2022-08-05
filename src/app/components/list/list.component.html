@@ -1,13 +1,14 @@
 <div class="container">
   <ul>
     <app-list-item
-      *ngFor="let data of listData; index as i"
+      *ngFor="let data of listData$ | async; index as i"
       [data]="data"
       [isGrey]="i % 2 === 0 ? true : false"
       [isFocused]="focusIdentifier === data.name"
-      [dataIdentifier]="dataIdentifier"
+      [dataIdentifier]="activeList"
       (onDeleteClick)="onDelete(data.id)"
     >
     </app-list-item>
   </ul>
 </div>
+{{ console.log(listData$, activeList) }}

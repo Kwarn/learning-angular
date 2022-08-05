@@ -12,6 +12,7 @@ export const loadCoursesSuccess = createAction(
   '[Courses API] Load Courses Success',
   props<{ courses: Course[] }>()
 );
+
 export const loadCoursesFailure = createAction(
   '[Courses API] Load Courses Failure',
   props<{ error: string }>()

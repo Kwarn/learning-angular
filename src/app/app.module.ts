@@ -10,6 +10,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 import { CourseOverviewComponent } from './components/course-overview/course-overview.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { StoreModule } from '@ngrx/store';
     ListItemComponent,
     CourseOverviewComponent,
   ],
-  imports: [BrowserModule, FontAwesomeModule, HttpClientModule, StoreModule.forRoot({}, {})],
+  imports: [BrowserModule, FontAwesomeModule, HttpClientModule, StoreModule.forRoot({}, {}), EffectsModule.forRoot([])],
   providers: [],
   bootstrap: [AppComponent],
 })

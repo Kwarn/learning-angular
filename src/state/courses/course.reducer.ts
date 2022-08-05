@@ -3,6 +3,7 @@ import { Course } from 'src/app/types';
 import {
   deleteCourse,
   loadCourses,
+  loadCoursesFailure,
   loadCoursesSuccess,
 } from './course.actions';
 
@@ -29,6 +30,11 @@ export const courseReducer = createReducer(
     courses: courses,
     error: null,
     status: 'success',
+  })),
+  on(loadCoursesFailure, (state, { error }) => ({
+    ...state,
+    error: error,
+    status: 'error',
   })),
   on(deleteCourse, (state, { id }) => ({
     ...state,

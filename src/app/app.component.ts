@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { SwitchFocusedItemService } from './events-service';
 import { ListNames } from './types';
 import { selectActiveList } from 'src/state/shared/shared.selectors';
 import { Store } from '@ngrx/store';
 import { setActiveList } from 'src/state/shared/shared.actions';
 import { AppState } from 'src/state/app.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +13,17 @@ import { AppState } from 'src/state/app.state';
 })
 export class AppComponent {
   title: string = 'angluar-students-app';
-  activeList$ = this.store.select(selectActiveList);
+  activeList$: Observable<ListNames> | undefined;
   console = console;
 
   constructor(
-    public switchFocusedItemService: SwitchFocusedItemService,
     private store: Store<AppState>
   ) {}
+
+  ngOnInit() {
+    this.activeList$ = this.store.select(selectActiveList);
+  }
+
   switchActiveList(ListName: ListNames) {
     this.store.dispatch(setActiveList({ listName: ListName }));
   }
