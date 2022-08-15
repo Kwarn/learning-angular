@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { ListNames } from 'src/app/types';
-import { setActiveList } from './shared.actions';
+import { Course, ListNames, Student } from 'src/app/types';
+import { setActiveList, setFocusedItem } from './shared.actions';
 
 export interface SharedState {
   activeList: ListNames;
@@ -8,14 +8,14 @@ export interface SharedState {
   status: 'pending' | 'loading' | 'error' | 'success';
 }
 
-export const initialState: SharedState = {
+export const sharedState: SharedState = {
   activeList: 'courses',
   error: null,
   status: 'pending',
 };
 
 export const sharedReducer = createReducer(
-  initialState,
+  sharedState,
   on(setActiveList, (state, { listName }) => ({
     ...state,
     activeList: listName,

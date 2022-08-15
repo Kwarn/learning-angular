@@ -5,46 +5,65 @@ import {
   loadCourses,
   loadCoursesSuccess,
   loadCoursesFailure,
+  deleteCourse,
+  deleteCourseSuccess,
+  deleteCourseFailure,
+  setFocusedCourse,
 } from './course.actions';
 import { of, from } from 'rxjs';
-import { switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
+import {
+  switchMap,
+  map,
+  catchError,
+  withLatestFrom,
+  mergeMap,
+  tap,
+} from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { selectAllCourses } from './course.selectors';
 import { AppState } from '../app.state';
 
 @Injectable()
-export class TodoEffects {
+export class CoursesEffects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
     private courseService: CourseService
   ) {}
 
-  // Run this code when a loadTodos action is dispatched
+  // Run this code when a loadCourses action is dispatched
   loadCourses$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadCourses),
-      switchMap(() =>
-        // Call the getTodos method, convert it to an observable
-        from(this.courseService.getCourses()).pipe(
-          // Take the returned value and return a new success action containing the todos
+      mergeMap(() =>
+        this.courseService.getCourses().pipe(
           map((courses) => loadCoursesSuccess({ courses: courses })),
-          // Or... if it errors return a new failure action containing the error
           catchError((error) => of(loadCoursesFailure({ error })))
         )
       )
     )
   );
 
-  // Run this code when the addTodo or removeTodo action is dispatched
-//   saveTodos$ = createEffect(
-//     () =>
-//       this.actions$.pipe(
-//         ofType(addTodo, removeTodo),
-//         withLatestFrom(this.store.select(selectAllTodos)),
-//         switchMap(([action, todos]) => from(this.todoService.saveTodos(todos)))
-//       ),
-//     // Most effects dispatch another action, but this one is just a "fire and forget" effect
-//     { dispatch: false }
-//   );
+  deleteCourse$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteCourse),
+      switchMap((action) =>
+        this.courseService.deleteCourse(action.id).pipe(
+          map(() => deleteCourseSuccess({ id: action.id })),
+          catchError((error) => of(deleteCourseFailure({ error })))
+          // map(() => setFocusedCourse({ course: null }))
+        )
+      )
+    )
+  );
+
+  // saveTodos$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(addTodo, removeTodo),
+  //       withLatestFrom(this.store.select(selectAllTodos)),
+  //       switchMap(([action, todos]) => from(this.todoService.saveTodos(todos)))
+  //     ),
+  //   // Most effects dispatch another action, but this one is just a "fire and forget" effect
+  //   { dispatch: false }
+  // );
 }

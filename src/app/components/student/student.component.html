@@ -1,0 +1,10 @@
+<div *ngIf="activeList === 'students'" class="container">
+  <div class="titleContainer">
+    <p>{{ studentData?.name }}</p>
+  </div>
+  <div class="desciptionContainer">
+    <p *ngIf="studentData?.courses">
+      {{ studentData?.courses }}
+    </p>
+  </div>
+</div>

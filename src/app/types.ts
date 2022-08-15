@@ -1,12 +1,13 @@
-export interface Student {
+export interface Item {
   id?: string;
   name: string;
+}
+
+export interface Student extends Item {
   courses: string[] | [];
 }
 
-export interface Course {
-  id?: string;
-  name: string;
+export interface Course extends Item {
   description: string;
   students: string[] | [];
 }
@@ -17,6 +18,7 @@ export interface ResponseTest {
   message: string;
   errors: string | string[];
   errorMessage: string;
+  id: string;
 }
 
 export interface ListTypes {

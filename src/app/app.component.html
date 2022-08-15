@@ -3,22 +3,29 @@
   <div class="button-container">
     <app-button
       text="Courses"
-      [active]="(activeList$ | async) === 'courses'"
+      [active]="activeList === 'courses'"
       (btnClick)="switchActiveList('courses')"
     ></app-button>
     <app-button
       text="Students"
-      [active]="(activeList$ | async) === 'students'"
+      [active]="activeList === 'students'"
       (btnClick)="switchActiveList('students')"
     ></app-button>
   </div>
-  <app-list></app-list>
+  <app-list
+    [listData$]="listData$"
+    [activeListIdentifier]="activeList"
+  ></app-list>
   <div class="overview-container">
-    <!-- <app-course-overview
-      *ngIf="(activeList$ | async) === 'courses' && focusedCourseItem"
-      [course]="focusedCourseItem"
-      ></app-course-overview> -->
+    <app-student
+      *ngIf="focusedStudent$ | async"
+      [studentData]="focusedStudent$ | async"
+      [activeList]="activeList"
+    ></app-student>
+    <app-course
+      *ngIf="focusedCourse$ | async"
+      [courseData]="focusedCourse$ | async"
+      [activeList]="activeList"
+    ></app-course>
   </div>
 </div>
-
-{{ console.log(activeList$ | async) }}

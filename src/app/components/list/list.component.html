@@ -5,10 +5,8 @@
       [data]="data"
       [isGrey]="i % 2 === 0 ? true : false"
       [isFocused]="focusIdentifier === data.name"
-      [dataIdentifier]="activeList"
-      (onDeleteClick)="onDelete(data.id)"
+      [dataIdentifier]="activeListIdentifier"
     >
     </app-list-item>
   </ul>
 </div>
-{{ console.log(listData$, activeList) }}

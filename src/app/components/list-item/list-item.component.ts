@@ -1,35 +1,49 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Course, Student } from 'src/app/types';
-import { CourseService } from 'src/app/services/course.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/state/app.state';
+import {
+  deleteCourse,
+  setFocusedCourse,
+} from 'src/state/courses/course.actions';
+import { setFocusedStudent } from 'src/state/students/student.actions';
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.css'],
 })
-export class ListItemComponent implements OnInit {
+export class ListItemComponent {
   @Input() data: Student | Course | undefined;
   @Input() isGrey: boolean | undefined;
   @Input() isFocused: boolean | undefined;
   @Input() dataIdentifier: string | undefined | null;
-  @Output() onDeleteClick = new EventEmitter();
   faTimes = faTimes;
-  console = console;
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {}
-
-  setOverview() {}
+  setOverview() {
+    if (this.dataIdentifier === 'courses') {
+      this.store.dispatch(setFocusedCourse({ course: this.data as Course }));
+    }
+    if (this.dataIdentifier === 'students') {
+      this.store.dispatch(setFocusedStudent({ student: this.data as Student }));
+    }
+  }
 
   onDelete() {
     const input = prompt(
-      `Are you sure you want to delete this ${this.dataIdentifier}? Enter 'delete' to confirm`
+      `Are you sure you want to delete this ${this.dataIdentifier?.slice(
+        0,
+        -1
+      )}? Enter 'delete' to confirm`
     );
 
     if (input === 'delete') {
-      this.onDeleteClick.emit();
+      if (this.dataIdentifier === 'courses' && this.data?.id) {
+        this.store.dispatch(deleteCourse({ id: this.data.id }));
+      }
     }
     return;
   }

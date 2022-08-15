@@ -2,30 +2,23 @@ h1 {
   color: red;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: auto;
 }
 
 .overview-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: auto;
 }
 
 .container {
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
+  align-items: center;
   display: flex;
-  max-height: 400px;
-  margin: 20px 0px; 
-  width: 500px;
 }

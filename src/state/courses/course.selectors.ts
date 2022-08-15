@@ -7,3 +7,7 @@ export const selectAllCourses = createSelector(
   selectCourses,
   (state: CourseState) => state.courses
 );
+export const selectFocusedCourse = createSelector(
+  selectCourses,
+  (state: CourseState) => state.focusedCourse
+);
