@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Course, ListNames, Student } from 'src/app/types';
+import { Course, Enroll, ListNames, Student } from 'src/app/types';
 
 export const setActiveList = createAction(
   '[App Page] Set Active List',
@@ -9,3 +9,4 @@ export const setFocusedItem = createAction(
   '[List-Item] Set Focused Item',
   props<{ item: Course | Student | undefined }>()
 );
+

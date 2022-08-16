@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Course, Student } from 'src/app/types';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/state/app.state';
@@ -7,7 +7,12 @@ import {
   deleteCourse,
   setFocusedCourse,
 } from 'src/state/courses/course.actions';
-import { deleteStudent, setFocusedStudent } from 'src/state/students/student.actions';
+import {
+  deleteStudent,
+  loadStudents,
+  setFocusedStudent,
+} from 'src/state/students/student.actions';
+import { selectAllStudents } from 'src/state/students/student.selectors';
 
 @Component({
   selector: 'app-list-item',
@@ -19,7 +24,12 @@ export class ListItemComponent {
   @Input() isGrey: boolean | undefined;
   @Input() isFocused: boolean | undefined;
   @Input() dataIdentifier: string | undefined | null;
+
+  students: Student[] | undefined | null;
+  courses: Course[] | undefined | null;
+
   faTimes = faTimes;
+  faPlus = faPlus;
 
   constructor(private store: Store<AppState>) {}
 
@@ -29,6 +39,31 @@ export class ListItemComponent {
     }
     if (this.dataIdentifier === 'students') {
       this.store.dispatch(setFocusedStudent({ student: this.data as Student }));
+    }
+  }
+
+  onAdd() {
+    if (this.dataIdentifier === 'courses') {
+      const input = prompt(
+        `Enter the students name you wish to enroll in this course.`
+      );
+      if (input?.trim()) {
+        this.store.dispatch(loadStudents());
+        this.store
+          .select(selectAllStudents)
+          .subscribe((students) => (this.students = students));
+        const foundStudent = this.students?.filter(
+          (student) => student.name === input
+        );
+        if (foundStudent) {
+          // enroll (data.name, student.id)
+        }
+      }
+    }
+    if (this.dataIdentifier === 'students') {
+      const input = prompt(
+        `Enter the course name you wish to enroll this student in.`
+      );
     }
   }
 

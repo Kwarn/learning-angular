@@ -4,7 +4,7 @@ import { selectActiveList } from 'src/state/shared/shared.selectors';
 import { Store } from '@ngrx/store';
 import { setActiveList } from 'src/state/shared/shared.actions';
 import { AppState } from 'src/state/app.state';
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs';
 import { loadCourses } from 'src/state/courses/course.actions';
 import {
   selectAllCourses,

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { Course, ListNames, Student } from 'src/app/types';
-import { setActiveList, setFocusedItem } from './shared.actions';
+import { ListNames } from 'src/app/types';
+import { setActiveList } from './shared.actions';
 
 export interface SharedState {
   activeList: ListNames;

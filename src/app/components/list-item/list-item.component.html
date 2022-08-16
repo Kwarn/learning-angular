@@ -5,5 +5,12 @@
   (click)="setOverview()"
 >
   <p>{{ data?.name }}</p>
-  <fa-icon (click)="onDelete()" class="delete-icon" [icon]="faTimes"></fa-icon>
+  <div class="icon-container">
+    <fa-icon (click)="onAdd()" class="plus-icon" [icon]="faPlus"></fa-icon>
+    <fa-icon
+      (click)="onDelete()"
+      class="delete-icon"
+      [icon]="faTimes"
+    ></fa-icon>
+  </div>
 </div>

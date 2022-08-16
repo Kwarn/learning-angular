@@ -12,6 +12,11 @@ export interface Course extends Item {
   students: string[] | [];
 }
 
+export interface Enroll {
+  studentId: string;
+  courseId: string;
+}
+
 export interface ResponseTest {
   status: string;
   statusCode: string;

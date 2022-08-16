@@ -9,6 +9,9 @@ import {
   deleteCourseSuccess,
   deleteCourseFailure,
   setFocusedCourse,
+  enrollStudent,
+  enrollSuccess,
+  enrollFailure,
 } from './course.actions';
 import { of, from } from 'rxjs';
 import {
@@ -21,16 +24,17 @@ import {
 } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
+import { EnrolmentService } from 'src/app/services/enrolment.service';
 
 @Injectable()
 export class CoursesEffects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private enrolmentService: EnrolmentService
   ) {}
 
-  // Run this code when a loadCourses action is dispatched
   loadCourses$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadCourses),
@@ -56,14 +60,15 @@ export class CoursesEffects {
     )
   );
 
-  // saveTodos$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(addTodo, removeTodo),
-  //       withLatestFrom(this.store.select(selectAllTodos)),
-  //       switchMap(([action, todos]) => from(this.todoService.saveTodos(todos)))
-  //     ),
-  //   // Most effects dispatch another action, but this one is just a "fire and forget" effect
-  //   { dispatch: false }
-  // );
+  enrollStudent$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(enrollStudent),
+      switchMap((action) =>
+        this.enrolmentService.enroll(action.enroll).pipe(
+          map(() => enrollSuccess({ enroll: action.enroll })),
+          catchError((error) => of(enrollFailure({ error })))
+        )
+      )
+    )
+  );
 }

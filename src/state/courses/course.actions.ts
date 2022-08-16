@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Course } from 'src/app/types';
+import { Course, Enroll } from 'src/app/types';
 
 export const deleteCourse = createAction(
   '[Courses] Remove Course',
@@ -31,4 +31,19 @@ export const loadCoursesFailure = createAction(
 export const setFocusedCourse = createAction(
   '[Course List Item] Focus Course',
   props<{ course: Course | null }>()
+);
+
+export const enrollStudent = createAction(
+  '[Enroll] Enroll',
+  props<{ enroll: Enroll }>()
+);
+
+export const enrollSuccess = createAction(
+  '[Enroll] Enroll Success',
+  props<{ enroll: Enroll }>()
+);
+
+export const enrollFailure = createAction(
+  '[Enroll] Enroll Success',
+  props<{ error: string }>()
 );
