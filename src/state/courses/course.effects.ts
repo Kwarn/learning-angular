@@ -8,29 +8,18 @@ import {
   deleteCourse,
   deleteCourseSuccess,
   deleteCourseFailure,
-  setFocusedCourse,
   enrollStudent,
   enrollSuccess,
   enrollFailure,
 } from './course.actions';
-import { of, from } from 'rxjs';
-import {
-  switchMap,
-  map,
-  catchError,
-  withLatestFrom,
-  mergeMap,
-  tap,
-} from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import { AppState } from '../app.state';
+import { of } from 'rxjs';
+import { switchMap, map, catchError, mergeMap } from 'rxjs/operators';
 import { EnrolmentService } from 'src/app/services/enrolment.service';
 
 @Injectable()
 export class CoursesEffects {
   constructor(
     private actions$: Actions,
-    private store: Store<AppState>,
     private courseService: CourseService,
     private enrolmentService: EnrolmentService
   ) {}

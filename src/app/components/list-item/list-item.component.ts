@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Course, Student } from 'src/app/types';
 import { Store } from '@ngrx/store';

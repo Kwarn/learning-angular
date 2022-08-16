@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ResponseTest, Student } from '../types';
-import { MOCK_STUDENTS } from '../mock-students';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({

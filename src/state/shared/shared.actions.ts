@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Course, Enroll, ListNames, Student } from 'src/app/types';
+import { Course, ListNames, Student } from 'src/app/types';
 
 export const setActiveList = createAction(
   '[App Page] Set Active List',

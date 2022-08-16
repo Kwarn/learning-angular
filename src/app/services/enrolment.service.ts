@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Enroll, ResponseTest } from '../types';
+import { Enroll } from '../types';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
