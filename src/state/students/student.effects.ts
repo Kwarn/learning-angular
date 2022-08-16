@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
+  deleteStudent,
+  deleteStudentFailure,
+  deleteStudentSuccess,
   loadStudents,
   loadStudentsFailure,
   loadStudentsSuccess,
@@ -37,6 +40,19 @@ export class StudentEffects {
       )
     )
   );
+
+  deleteStudent$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(deleteStudent),
+    switchMap((action) =>
+      this.studentService.deleteStudent(action.id).pipe(
+        map(() => deleteStudentSuccess({ id: action.id })),
+        catchError((error) => of(deleteStudentFailure({ error })))
+        // map(() => setFocusedStudent({ student: null }))
+      )
+    )
+  )
+);
 
   // Run this code when the addTodo or removeTodo action is dispatched
   //   saveTodos$ = createEffect(

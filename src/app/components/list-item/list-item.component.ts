@@ -7,7 +7,7 @@ import {
   deleteCourse,
   setFocusedCourse,
 } from 'src/state/courses/course.actions';
-import { setFocusedStudent } from 'src/state/students/student.actions';
+import { deleteStudent, setFocusedStudent } from 'src/state/students/student.actions';
 
 @Component({
   selector: 'app-list-item',
@@ -43,6 +43,9 @@ export class ListItemComponent {
     if (input === 'delete') {
       if (this.dataIdentifier === 'courses' && this.data?.id) {
         this.store.dispatch(deleteCourse({ id: this.data.id }));
+      }
+      if (this.dataIdentifier === 'students' && this.data?.id) {
+        this.store.dispatch(deleteStudent({ id: this.data.id }));
       }
     }
     return;

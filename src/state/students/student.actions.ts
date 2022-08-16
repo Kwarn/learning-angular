@@ -6,6 +6,16 @@ export const deleteStudent = createAction(
   props<{ id: string }>()
 );
 
+export const deleteStudentSuccess = createAction(
+  '[Students] Remove Student Success',
+  props<{ id: string }>()
+);
+
+export const deleteStudentFailure = createAction(
+  '[Students] Remove Student Failure',
+  props<{ error: string }>()
+);
+
 export const loadStudents = createAction('[Students Page] Load Students');
 
 export const loadStudentsSuccess = createAction(

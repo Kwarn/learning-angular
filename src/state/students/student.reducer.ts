@@ -2,6 +2,8 @@ import { createReducer, on } from '@ngrx/store';
 import { Student } from 'src/app/types';
 import {
   deleteStudent,
+  deleteStudentFailure,
+  deleteStudentSuccess,
   loadStudents,
   loadStudentsFailure,
   loadStudentsSuccess,
@@ -41,7 +43,18 @@ export const studentReducer = createReducer(
   })),
   on(deleteStudent, (state, { id }) => ({
     ...state,
+    status: 'loading',
+  })),
+  on(deleteStudentSuccess, (state, { id }) => ({
+    ...state,
     students: state.students.filter((student) => student.id !== id),
+
+    status: 'success',
+  })),
+  on(deleteStudentFailure, (state, { error }) => ({
+    ...state,
+    status: 'error',
+    error: error,
   })),
   on(setFocusedStudent, (state, { student }) => ({
     ...state,
